@@ -5,14 +5,59 @@ body{
   text-align: center;
   position: relative;
   color: grey;
+  margin: 0;
+  padding: 0;
 }
+/* ---------------------------------- header -------------------------------*/
 header{
+  margin-top: 0;
+  padding-top:0;
+  position: relative;
+}
+header .reset{
+  transition: all 250ms;
+  -moz-transition: all 250ms;
+  -webkit-transition: all 250ms;
+  -o-transition: all 250ms;
+  -ms-transition: all 250ms;
+  border-radius: 30px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  position: absolute;
+  left: 25vw;
+  line-height: 11vh;
+  display: inline-block;
+  padding: 0 2vw;
+  font-size: 15px;
+}
+header .reset:hover{
+  -moz-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  color: rgb(189, 192, 194);
+}
+
+header h2{
+  margin-top: 0;
+  padding-top:0;
+  height: 10vh;
+  color: grey;
+  background: rgb(241, 241, 241);
+  line-height: 10vh;
 }
 header .score{
   font-size: 15px;
+  position: absolute;
+  right: 25vw;
+  line-height: 11vh;
 }
-.container{
-  margin: 5px 20px;
+
+/* ---------------------------------- main body -------------------------------*/
+main{
+  margin: 0 20px 10px 20px;
   width: 50vw;
   position: absolute;
   left: 50%;
@@ -42,11 +87,18 @@ header .score{
   transition: all 250ms ease-in;
   -moz-transition: all 250ms ease-in;
   -webkit-transition: all 250ms ease-in;
+  -o-transition: all 250ms ease-in;
+  -ms-transition: all 250ms ease-in;
   cursor: pointer;
 }
 .ans:hover{
   background: grey;
   color: white;
+  -moz-transform: translateY(2vh);
+  -webkit-transform: translateY(2vh);
+  -o-transform: translateY(2vh);
+  -ms-transform: translateY(2vh);
+  transform: translateY(2vh);
 }
 .ans h5{
   line-height: 20px;
@@ -61,3 +113,5 @@ header .score{
   -webkit-box-shadow: 2px 2px 5px gba(0, 0, 0, 0.2);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
+
+
