@@ -2,7 +2,7 @@
 
 fetch("./qus.json")
   .then(response => response.json())
-  .then(data => start(data))
+  .then(data => { start(data) })
   .catch(err => console.log("err", err))
 
 //------------------------------------ Start Game
@@ -15,84 +15,77 @@ window.onclick = function () {
 }
 
 //------------------------------------- Game play
-var alreadyId = []
+
+var oldIdArr = []
 //......................... grab some info for id & qus the First time
 function start(data) {
   var dataText = data
-  var id = Math.floor(Math.random() * (dataText.length - 1))
-  displayQus(dataText, id)
+  oldIdArr = shuffle(dataText)
+  var id = oldIdArr[0]
+  console.log(id)
+  displayQus(dataText)
 }
 //........................................ display qus -> Second time start here
 function displayQus(dataText, id) {
-  var shuffle = shuffle(dataText)
-  console.log(shuffle)
   var qusText = document.querySelector('.ques-container h4')
   dataText = dataText
-  id = id
+  id = 0
   document.querySelector('.conclusion-container').style.display = "block"
   document.querySelector('.check').style.opacity = 0
   qusText.innerText = dataText[id].qus
   displayAns(dataText, id)
+}
 
-  //............................................... display ans (grab some info)
-  function displayAns(dataText, id) {
-    dataText = dataText
-    id = id
-    var ansContainer = document.querySelector('.ans-container')
+//............................................... display ans (grab some info)
+function displayAns(dataText, id) {
+  dataText = dataText
+  id = id
+  var ansContainer = document.querySelector('.ans-container')
 
-    //...............................................  start to display ans
-    for (let i = 0; i < dataText[id].quotes.length; i++) {
-      var ans = document.createElement('article')
-      ans.setAttribute('class', 'ans')
-      ansContainer.appendChild(ans)
+  //...............................................  start to display ans
+  for (let i = 0; i < dataText[id].quotes.length; i++) {
+    var ans = document.createElement('article')
+    ans.setAttribute('class', 'ans')
+    ansContainer.appendChild(ans)
 
-      var quoteText = document.createElement('h5')
-      ans.appendChild(quoteText)
+    var quoteText = document.createElement('h5')
+    ans.appendChild(quoteText)
 
-      quoteText.textContent = dataText[id].quotes[i]
-    }
-    var ansArr = document.querySelectorAll('.ans')
-    var quoteText = document.querySelectorAll('h5')
-    //............................................... ans on click
-    for (let i = 0; i < ansArr.length; i++) {
-      ansArr[i].addEventListener('click', function () {
-        if (quoteText[i].textContent == dataText[id].ans) {
-          document.querySelector('.right-wrong').innerText = "Genius!"
-          reset(id, dataText)
-        } else {
-          document.querySelector('.right-wrong').innerText = "Incorrect"
-          reset(id, dataText)
-        }
-      })
-    }
+    quoteText.textContent = dataText[id].quotes[i]
   }
-
-  function reset(id, dataText) {
-    document.querySelector('.conclusion-container').style.display = "none"
-    document.querySelector('.check').style.opacity = 1
-    id = Math.floor(Math.random() * (dataText.length - 1))
-    dataText = dataText
-    alreadyId = alreadyId
-    console.log(alreadyId)
-
-
-    if (!alreadyId.includes(id)) {
-      alreadyId.push(id)
-      if (alreadyId.length >= dataText.length) {
-        document.querySelector('.ques-container h4').remove()
-        qusText.innerText = "Congrats! You have completes all the riddles. You are a genius!"
+  var ansArr = document.querySelectorAll('.ans')
+  var quoteText = document.querySelectorAll('h5')
+  //............................................... ans on click
+  for (let i = 0; i < ansArr.length; i++) {
+    ansArr[i].addEventListener('click', function () {
+      if (quoteText[i].textContent == dataText[id].ans) {
+        document.querySelector('.right-wrong').innerText = "Genius!"
+        reset(id, dataText)
       } else {
-        this.setTimeout(function () {
-          document.querySelectorAll('.ans').forEach(e => e.remove())
-          displayQus(dataText, id)
-        }, 1000)
+        document.querySelector('.right-wrong').innerText = "Incorrect"
+        reset(id, dataText)
       }
-    } else {
-      var index = alreadyId.indexOf(id)
-      alreadyId.slice(index, 0)
-      console.log(index)
+    })
+  }
+}
 
-    }
+function reset(id, dataText) {
+  document.querySelector('.conclusion-container').style.display = "none"
+  document.querySelector('.check').style.opacity = 1
+  id = Math.floor(Math.random() * (dataText.length - 1))
+  dataText = dataText
+  this.setTimeout(function () {
+    document.querySelectorAll('.ans').forEach(e => e.remove())
+    displayQus(dataText, id)
+  }, 1000)
+
+  if (oldIdArr.length === 1) {
+
+    document.querySelector('.ques-container h4').remove()
+    document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a genius!"
+  } else {
+
+    oldIdArr.shift()
 
   }
 }
