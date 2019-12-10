@@ -31,7 +31,7 @@ body{
   cursor: pointer;
 }
 .overlay header{
-  -webkit-transform: translateY(30vh);;
+  -webkit-transform: translateY(30vh);
   transform: translateY(30vh);
   z-index: 101;
 }
@@ -197,8 +197,6 @@ main{
 .ques-container{
   line-height: 6vmin;
 }
-.dialog-container{
-}
 .ans-container{
   display: flex;
   flex-wrap: nowrap;
@@ -256,15 +254,13 @@ main{
   text-align: center;
   margin-top: -12vh;
   margin-left: -35vw;
-
+  opacity: 0;
 }
 .final .check .explain{
   font-weight: 200;
   padding: 0 1vw;
   margin-top: 3vh;
 }
-.final .check  .right-wrong{
 
-}
 
 
