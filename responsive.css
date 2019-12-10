@@ -5,6 +5,12 @@
     flex-direction: row;
     margin: 6vh;
   }
+  header .score{
+    right: 30vmin;
+  }
+  header .reset{
+    left: 30vmin;
+  }
 }
 
 /* ###############################  END  ############################### */

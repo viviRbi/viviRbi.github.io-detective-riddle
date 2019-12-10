@@ -148,7 +148,7 @@ header .reset{
   cursor: pointer;
   position: absolute;
   left: 25vw;
-  line-height: 11vh;
+  line-height: 10vmin;
   display: inline-block;
   padding: 0 2vw;
   font-size: 3vmin;
@@ -176,7 +176,7 @@ header .score{
   font-size: 3vmin;
   position: absolute;
   right: 25vw;
-  line-height: 11vh;
+  line-height: 10vmin;
   font-weight: 200;
 }
 header .score span:first-child{
@@ -199,6 +199,7 @@ main{
   height: 20vmin;
   display: table;
   overflow: hidden;
+  text-align: center;
 }
 .ques-container h4{
   display: table-cell;
