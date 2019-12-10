@@ -15,6 +15,7 @@ fetch("./qus.json")
 document.querySelector('.reset').addEventListener('click', function () {
   document.querySelectorAll('.ans').forEach(e => e.remove())
   score = 0 * 1
+  document.querySelector('.final .conclusion-container').innerText = "Who is lying?"
   document.querySelector('.score-display').innerText = score
   if (document.querySelector('.ques-container h4') === null || document.querySelector('.ques-container h4') === undefined) {
     var qusText = document.createElement('h4')
@@ -106,9 +107,11 @@ function reset(id, dataText) {
   }, 2000)
 
   if (oldIdArr.length === 1) {
+    this.setTimeout(function () {
+      document.querySelector('.ques-container h4').remove()
+      document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a true dectective!"
+    }, 2000)
 
-    document.querySelector('.ques-container h4').remove()
-    document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a true dectective!"
   } else {
 
     oldIdArr.shift()

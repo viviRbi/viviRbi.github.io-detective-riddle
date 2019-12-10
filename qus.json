@@ -36,7 +36,7 @@
     "quotes": [
       "Billy Smith: I was outside playing basketball.",
       "The Maid: I was dusting the corners of the house.",
-      "Chef: I was starting to make lunch for later.”Who is lying?"
+      "Chef: I was starting to make lunch for later."
     ],
     "ans": "The Maid: I was dusting the corners of the house.",
     "explain": "The maid was lying. There are no corners in a circular house."
