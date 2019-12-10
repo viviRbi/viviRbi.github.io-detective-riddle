@@ -1,11 +1,15 @@
-//------------------------------------ JSON
+//------------------------------------ Global -------------------
+
+var oldIdArr = []
+var score = 0 * 1
+//------------------------------------ Fetch JSON -------------------
 
 fetch("./qus.json")
   .then(response => response.json())
   .then(data => { start(data) })
   .catch(err => console.log("err", err))
 
-//------------------------------------ Start Game
+//------------------------------------ Start Game ----------------------
 
 window.onclick = function () {
   document.querySelector('.overlay').classList.add("zero-opacity")
@@ -16,14 +20,13 @@ window.onclick = function () {
 
 //------------------------------------- Game play
 
-var oldIdArr = []
+
 //......................... grab some info for id & qus the First time
 function start(data) {
   var dataText = data
   oldIdArr = shuffle(dataText)
   var id = oldIdArr[0]
-  console.log(id)
-  displayQus(dataText)
+  displayQus(dataText, id)
 }
 //........................................ display qus -> Second time start here
 function displayQus(dataText, id) {
@@ -60,6 +63,9 @@ function displayAns(dataText, id) {
     ansArr[i].addEventListener('click', function () {
       if (quoteText[i].textContent == dataText[id].ans) {
         document.querySelector('.right-wrong').innerText = "Genius!"
+        score += 1 * 1
+        document.querySelector('.score-display').innerText = score
+        console.log(score)
         reset(id, dataText)
       } else {
         document.querySelector('.right-wrong').innerText = "Incorrect"
@@ -95,10 +101,10 @@ function reset(id, dataText) {
 function shuffle(a) {
   var j, x, i;
   for (i = a.length - 1; i > 0; i--) {
-    j = Math.floor(Math.random() * (i + 1)); // random number from 0 to a.length
-    x = a[i]; // last one in the arr
+    j = Math.floor(Math.random() * (i + 1)); // random number from 0 to array length
+    x = a[i]; // first child in the arr
     a[i] = a[j]; // random
-    a[j] = x; // random = last one in the array
+    a[j] = x; // replace first child in the array with random till i=0
   }
   return a;
 }
