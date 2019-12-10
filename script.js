@@ -35,6 +35,7 @@ function displayQus(dataText, id) {
   id = 0
   document.querySelector('.conclusion-container').style.display = "block"
   document.querySelector('.check').style.opacity = 0
+  document.querySelector('.check .explain').innerText = dataText[id].explain
   qusText.innerText = dataText[id].qus
   displayAns(dataText, id)
 }
@@ -78,17 +79,17 @@ function displayAns(dataText, id) {
 function reset(id, dataText) {
   document.querySelector('.conclusion-container').style.display = "none"
   document.querySelector('.check').style.opacity = 1
-  id = Math.floor(Math.random() * (dataText.length - 1))
+  id = id
   dataText = dataText
   this.setTimeout(function () {
     document.querySelectorAll('.ans').forEach(e => e.remove())
     displayQus(dataText, id)
-  }, 1000)
+  }, 2000)
 
   if (oldIdArr.length === 1) {
 
     document.querySelector('.ques-container h4').remove()
-    document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a true detective!"
+    document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a true dectective!"
   } else {
 
     oldIdArr.shift()
