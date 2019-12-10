@@ -88,7 +88,7 @@ function reset(id, dataText) {
   if (oldIdArr.length === 1) {
 
     document.querySelector('.ques-container h4').remove()
-    document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a genius!"
+    document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a true detective!"
   } else {
 
     oldIdArr.shift()
