@@ -1,0 +1,34 @@
+[
+  {
+    "qus": "Shauna was killed one Sunday morning. The police know who they are going to arrest from this bit of information:",
+    "quotes": [
+      "April was getting the mail.",
+      "Alyssa was doing laundry.",
+      "Reggie was cooking.",
+      "Mark was planting in the garden."
+    ],
+    "ans": "April was getting the mail.",
+    "explain": "April killed Shauna because there is no mail delivery on Sundays."
+  },
+  {
+    "qus": "A Japanese ship was en route in the open sea. The Japanese captain went for a shower removing his diamond ring and Rolex watch on the table. When he returned, his valuables were missing. The captain immediately called the five suspected crew members and asked each one where and what he was doing for the last 15 minutes.",
+    "quotes": [
+      "The Filipino cook in a heavy overcoat said, `I was in fridge room getting meat for cooking`.",
+      "The Indian Engineer with a torch in hand said, `I was working on generator engine.`",
+      "The Sri Lankan seaman said, `I was on the mast (top of the ship) correcting the flag which was upside down by mistake`"
+    ],
+    "ans": "The Sri Lankan seaman said, `I was on the mast (top of the ship) correcting the flag which was upside down by mistake`",
+    "explain": "The thief is the Sri Lankan seaman. They are on a Japanese ship, so it will bear a Japanese flag. The Japanese flag will look the same upside down."
+  },
+  {
+    "qus": "A game set has gone missing from the classroom. Mr Robert called up 4 pupils and interviewed them. Only one of them is telling the truth.",
+    "quotes": [
+      "Alice: I did not take the game set",
+      "David: I think Bob took the game set.",
+      "Bob: Alice is lying.",
+      "Carol: Bob is lying."
+    ],
+    "ans": "Bob: Alice is lying.",
+    "explain": "Alice took the game set and Bob is telling the truth."
+  }
+]
