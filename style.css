@@ -196,6 +196,13 @@ main{
 
 .ques-container{
   line-height: 6vmin;
+  height: 20vmin;
+  display: table;
+  overflow: hidden;
+}
+.ques-container h4{
+  display: table-cell;
+  vertical-align: middle;
 }
 .ans-container{
   display: flex;
