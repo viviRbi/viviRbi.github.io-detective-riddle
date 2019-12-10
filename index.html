@@ -7,15 +7,23 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
 </head>
 
 <body>
-
+  <div class="overlay">
+    <header>
+      <h1>Detective Riddles</h1>
+      <h6>Improve you logical skill</h6>
+    </header>
+    <p>Click anywhere to play</p>
+    <!-- <div id="canvas"></div> -->
+  </div>
   <header>
     <h2>
       <span class="reset">Reset</span>
       Detective Riddles
-      <span class="score"><strong>Score</strong> <span>01</span></span>
+      <span class="score"><span>Score</span> <span>01</span></span>
     </h2>
 
   </header>
@@ -45,23 +53,27 @@
       </article>
     </section>
 
-
-    <section class="conclusion-container">
+    <div class="final">
       <!-- display none after player answer -->
-      <h4>Who is lying?</h4>
-    </section>
+      <section class="conclusion-container">
+        <!-- <h3>Who is lying?</h3> -->
 
-    <!-- <section class="check">
-      <h3 class="right-wrong">Correct!</h3>
-      <h4 class="explain">The maid was lying. There are no corners in a circular house.</h4>
-    </section>
-  </main> -->
+      </section>
+
+      <section class="check">
+        <h3 class="right-wrong">Correct!</h3>
+        <h4 class="explain">The maid was lying. There are no corners in a circular house.</h4>
+      </section>
+
+    </div>
+
+  </main>
 
 
 
 
-
-    <script src="script.js"></script>
+  <script src="canvas.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,36 @@
+/* ------------------------------------------------------------------------------------- */
+@media screen and (min-width: 748px){
+
+  .ans-container{
+    flex-direction: row;
+    margin: 6vh;
+  }
+}
+
+/* ###############################  END  ############################### */
+
+@media screen and (min-width: 0) and (max-width: 747px){
+  body{
+    overflow: auto;
+  }
+  /* ------------------ header ------------- */
+  header h2{
+    font-size: 5vmin;
+  }
+  header .score{
+    right: 10vw;
+  }
+  header .reset{
+    left: 10vw;
+  }
+/* ------------------ ans ------------- */
+  .ans-container{
+    flex-direction: column;
+    width: 70vw;
+  }
+  .ans{
+    width: 70vw;
+    padding: 0.3vmin 0.5vmin
+  }
+}
+/* ###############################  END  ############################### */
