@@ -9,9 +9,28 @@ fetch("./qus.json")
   .then(data => { start(data) })
   .catch(err => console.log("err", err))
 
+
+//------------------------------------ Reset -------------------
+
+document.querySelector('.reset').addEventListener('click', function () {
+  document.querySelectorAll('.ans').forEach(e => e.remove())
+  score = 0 * 1
+  document.querySelector('.score-display').innerText = score
+  if (document.querySelector('.ques-container h4') === null || document.querySelector('.ques-container h4') === undefined) {
+    var qusText = document.createElement('h4')
+    var qusHolder = document.querySelector('.ques-container')
+    qusHolder.appendChild(qusText)
+  }
+  fetch("./qus.json")
+    .then(response => response.json())
+    .then(data => { start(data) })
+    .catch(err => console.log("err", err))
+})
+
 //------------------------------------ Start Game ----------------------
 
 window.onclick = function () {
+
   document.querySelector('.overlay').classList.add("zero-opacity")
   this.setTimeout(function () {
     document.querySelector('.overlay').style.display = "none"
@@ -30,6 +49,7 @@ function start(data) {
 }
 //........................................ display qus -> Second time start here
 function displayQus(dataText, id) {
+  console.log(score)
   var qusText = document.querySelector('.ques-container h4')
   dataText = dataText
   id = 0
@@ -66,7 +86,6 @@ function displayAns(dataText, id) {
         document.querySelector('.right-wrong').innerText = "Genius!"
         score += 1 * 1
         document.querySelector('.score-display').innerText = score
-        console.log(score)
         reset(id, dataText)
       } else {
         document.querySelector('.right-wrong').innerText = "Incorrect"
