@@ -24,8 +24,6 @@ function start(data) {
 }
 //........................................ display qus -> Second time start here
 function displayQus(dataText, id) {
-  var shuffle = shuffle(dataText)
-  console.log(shuffle)
   var qusText = document.querySelector('.ques-container h4')
   dataText = dataText
   id = id

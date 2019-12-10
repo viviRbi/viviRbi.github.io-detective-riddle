@@ -24,8 +24,6 @@ function start(data) {
 }
 //........................................ display qus -> Second time start here
 function displayQus(dataText, id) {
-  var shuffle = shuffle(dataText)
-  console.log(shuffle)
   var qusText = document.querySelector('.ques-container h4')
   dataText = dataText
   id = id
@@ -73,39 +71,38 @@ function displayQus(dataText, id) {
     id = Math.floor(Math.random() * (dataText.length - 1))
     dataText = dataText
     alreadyId = alreadyId
-    console.log(alreadyId)
 
-
-    if (!alreadyId.includes(id)) {
-      alreadyId.push(id)
-      if (alreadyId.length >= dataText.length) {
-        document.querySelector('.ques-container h4').remove()
-        qusText.innerText = "Congrats! You have completes all the riddles. You are a genius!"
+    for (let i = 0; i < dataText.length; i++) {
+      if (!alreadyId.includes(id)) {
+        alreadyId.push(id)
+        if (alreadyId.length >= dataText.length) {
+          document.querySelector('.ques-container h4').remove()
+          qusText.innerText = "Congrats! You have completes all the riddles. You are a genius!"
+        } else {
+          this.setTimeout(function () {
+            document.querySelectorAll('.ans').forEach(e => e.remove())
+            displayQus(dataText, id)
+          }, 1000)
+        }
       } else {
-        this.setTimeout(function () {
-          document.querySelectorAll('.ans').forEach(e => e.remove())
-          displayQus(dataText, id)
-        }, 1000)
+        var index = alreadyId.indexOf(i)
+        alreadyId.slice(index, 1)
+        console.log(alreadyId)
       }
-    } else {
-      var index = alreadyId.indexOf(id)
-      alreadyId.slice(index, 0)
-      console.log(index)
-
     }
 
   }
 }
-//------------------------------ Shuffle
-// copy from source
 // https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
-function shuffle(a) {
-  var j, x, i;
-  for (i = a.length - 1; i > 0; i--) {
-    j = Math.floor(Math.random() * (i + 1)); // random number from 0 to a.length
-    x = a[i]; // last one in the arr
-    a[i] = a[j]; // random
-    a[j] = x; // random = last one in the array
+function shuffle(arr) {
+  let counter = arr.length
+
+  while (counter > 0) {
+    let index = Math.floor(Math.random() * counter)
+    counter--
+
+    let temp = arr[counter];
+    arr[index] = temp
   }
-  return a;
+  return arr
 }
