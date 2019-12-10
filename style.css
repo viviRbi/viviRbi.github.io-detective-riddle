@@ -233,6 +233,10 @@ main{
   -ms-transform: translateY(2vh);
   transform: translateY(2vh);
 }
+.ans-clicked{
+  background: grey;
+  color: white;
+}
 .ans-container img{
   width: 60px;
   height: 60px;

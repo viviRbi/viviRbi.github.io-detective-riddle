@@ -26,6 +26,9 @@ function displayQus(data) {
 }
 
 function displayAns(dataText, id) {
+  dataText = dataText
+  id = id
+  console.log(id)
   var ansContainer = document.querySelector('.ans-container')
   for (let i = 0; i < dataText[id].quotes.length; i++) {
 
@@ -37,7 +40,18 @@ function displayAns(dataText, id) {
     ans.appendChild(quoteText)
 
     quoteText.textContent = dataText[id].quotes[i]
-    console.log(dataText[id].quotes[i])
+  }
+  var ansArr = document.querySelectorAll('.ans')
+  var quoteText = document.querySelectorAll('h5')
+  for (let i = 0; i < ansArr.length; i++) {
+    ansArr[i].addEventListener('click', function () {
+      if (quoteText[i].textContent == dataText[id].ans) {
+        console.log('correct')
+      } else {
+        console.log("wrong")
+      }
+    })
   }
 }
+
 
