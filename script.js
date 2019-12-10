@@ -108,10 +108,10 @@ function reset(id, dataText) {
 
   if (oldIdArr.length === 1) {
     this.setTimeout(function () {
+      document.querySelectorAll('.ans').forEach(e => e.remove())
       document.querySelector('.ques-container h4').remove()
       document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a true dectective!"
     }, 2000)
-
   } else {
 
     oldIdArr.shift()
