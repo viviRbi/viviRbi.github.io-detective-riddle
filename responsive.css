@@ -1,21 +1,26 @@
 /* ------------------------------------------------------------------------------------- */
-@media screen and (min-width: 748px){
+@media (min-width: 748px) and (max-width: 1271){
 
   .ans-container{
-    flex-direction: row;
+    flex-direction: column;
     margin: 6vh;
   }
   header .score{
-    right: 30vmin;
+    position: absolute;
+    right: 10vmin !important;
+    margin: 0 10vmin;
+
   }
   header .reset{
-    left: 30vmin;
+    position: absolute;
+    left: 10vmin !important;
+    padding: 0 10vmin;
   }
 }
 
 /* ###############################  END  ############################### */
 
-@media screen and (min-width: 0) and (max-width: 747px){
+@media screen and (max-width: 747px){
   body{
     overflow: auto;
   }
@@ -29,14 +34,23 @@
   header .reset{
     left: 10vw;
   }
+  /* ------------------ qus------------- */
+
+  .qus-container{
+    margin-top: 10vmax;
+    margin-bottom: 20vmax;
+  }
 /* ------------------ ans ------------- */
   .ans-container{
     flex-direction: column;
     width: 70vw;
+    margin-top: 10vmin;
+    margin-bottom: 10vmin
   }
   .ans{
     width: 70vw;
-    padding: 0.3vmin 0.5vmin
+    padding: 0;
+    height: 5vmin;
   }
 }
 /* ###############################  END  ############################### */

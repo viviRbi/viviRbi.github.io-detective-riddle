@@ -2,6 +2,17 @@
 
 var oldIdArr = []
 var score = 0 * 1
+
+
+const finalScore = localStorage.getItem('finalScore')
+
+
+var finalScoreArr = []
+
+const maxHighScore = 20
+
+
+
 //------------------------------------ Fetch JSON -------------------
 
 fetch("./qus.json")
@@ -33,9 +44,6 @@ document.querySelector('.reset').addEventListener('click', function () {
 window.onclick = function () {
 
   document.querySelector('.overlay').classList.add("zero-opacity")
-  this.setTimeout(function () {
-    document.querySelector('.overlay').style.display = "none"
-  }, 1000)
 }
 
 //------------------------------------- Game play
@@ -50,6 +58,9 @@ function start(data) {
 }
 //........................................ display qus -> Second time start here
 function displayQus(dataText, id) {
+  this.setTimeout(function () {
+    document.querySelector('.overlay').style.display = "none"
+  }, 1000)
   console.log(score)
   var qusText = document.querySelector('.ques-container h4')
   dataText = dataText
@@ -81,22 +92,29 @@ function displayAns(dataText, id) {
   var ansArr = document.querySelectorAll('.ans')
   var quoteText = document.querySelectorAll('h5')
   //............................................... ans on click
+
   for (let i = 0; i < ansArr.length; i++) {
-    ansArr[i].addEventListener('click', function () {
-      if (quoteText[i].textContent == dataText[id].ans) {
-        document.querySelector('.right-wrong').innerText = "Genius!"
-        score += 1 * 1
-        document.querySelector('.score-display').innerText = score
-        reset(id, dataText)
-      } else {
-        document.querySelector('.right-wrong').innerText = "Incorrect"
-        reset(id, dataText)
-      }
-    })
+    if (!ansArr[i].classList.contains('ans-click')) {
+      ansArr[i].addEventListener('click', function (event) {
+        this.classList.add('ans-click')
+        // set overlay to prevent player from click the 2nd time
+        document.querySelector('.overlay').style.display = "block"
+        if (quoteText[i].textContent == dataText[id].ans) {
+          document.querySelector('.right-wrong').innerText = "Genius!"
+          score += 1 * 1
+          document.querySelector('.score-display').innerText = score
+          reset(id, dataText)
+        } else {
+          document.querySelector('.right-wrong').innerText = "Incorrect"
+          reset(id, dataText)
+        }
+      })
+    }
   }
 }
 
 function reset(id, dataText) {
+
   document.querySelector('.conclusion-container').style.display = "none"
   document.querySelector('.check').style.opacity = 1
   id = id
@@ -112,6 +130,10 @@ function reset(id, dataText) {
       document.querySelector('.ques-container h4').remove()
       document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a true dectective!"
     }, 2000)
+    //------------------------------- Local Storage
+    finalScoreArr.push(score)
+    localStorage.setItem('finalScore', finalScoreArr)
+
   } else {
 
     oldIdArr.shift()

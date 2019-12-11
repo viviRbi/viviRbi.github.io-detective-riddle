@@ -147,7 +147,7 @@ header .reset{
   margin: 0;
   cursor: pointer;
   position: absolute;
-  left: 25vw;
+  left: 20vw;
   line-height: 10vmin;
   display: inline-block;
   padding: 0 2vw;
@@ -175,7 +175,7 @@ header h2{
 header .score{
   font-size: 3vmin;
   position: absolute;
-  right: 25vw;
+  right: 20vw;
   line-height: 10vmin;
   font-weight: 200;
 }
@@ -242,8 +242,8 @@ main{
   transform: translateY(2vh);
 }
 .ans-clicked{
-  background: grey;
-  color: white;
+  background: grey !important;
+  color: white !important;
 }
 .ans-container img{
   width: 60px;
