@@ -3,13 +3,15 @@
 var oldIdArr = []
 var score = 0 * 1
 
+//------------------------------------ Local Storage---------------
+// ref https://github.com/jamesqquick/Build-A-Quiz-App-With-HTML-CSS-and-JavaScript/blob/master/9.%20Load%20and%20Display%20High%20Scores%20from%20Local%20Storage/end.js
 
 const maxHighScore = 20
 
+finalScore = JSON.parse(localStorage.getItem('finalScore')) || []
+localStorage.setItem('finalScore', JSON.stringify(finalScore))
 
-const finalScore = localStorage.getItem('finalScore')
-var finalScoreArr = []
-
+// localStorage.clear()
 
 //------------------------------------ Fetch JSON -------------------
 
@@ -56,6 +58,8 @@ function start(data) {
   oldIdArr = shuffle(dataText)
   var id = oldIdArr[0]
   displayQus(dataText, id)
+
+
 }
 //........................................ display qus -> Second time start here
 function displayQus(dataText, id) {
@@ -130,10 +134,9 @@ function reset(id, dataText) {
       document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a true dectective!"
     }, 1000)
     //------------------------------- Local Storage
-    finalScoreArr.push(score)
-    localStorage.setItem('finalScore', finalScoreArr)
 
-
+    finalScore.push(score)
+    localStorage.setItem('finalScore', JSON.stringify(finalScore))
 
   } else {
 
@@ -144,13 +147,14 @@ function reset(id, dataText) {
 //------------------------------ Shuffle
 // copy from source
 // https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+
 function shuffle(a) {
-  var j, x, i;
-  for (i = a.length - 1; i > 0; i--) {
-    j = Math.floor(Math.random() * (i + 1)); // random number from 0 to array length
-    x = a[i]; // first child in the arr
-    a[i] = a[j]; // random
-    a[j] = x; // replace first child in the array with random till i=0
+  var random, index, firstChild;
+  for (index = a.length - 1; index > 0; index--) {
+    random = Math.floor(Math.random() * (index + 1));
+    firstChild = a[index];
+    a[index] = a[random];
+    a[random] = firstChild;
   }
   return a;
 }
