@@ -4,13 +4,11 @@ var oldIdArr = []
 var score = 0 * 1
 
 
-const finalScore = localStorage.getItem('finalScore')
-
-
-var finalScoreArr = []
-
 const maxHighScore = 20
 
+
+const finalScore = localStorage.getItem('finalScore')
+var finalScoreArr = []
 
 
 //------------------------------------ Fetch JSON -------------------
@@ -44,6 +42,9 @@ document.querySelector('.reset').addEventListener('click', function () {
 window.onclick = function () {
 
   document.querySelector('.overlay').classList.add("zero-opacity")
+  this.setTimeout(function () {
+    document.querySelector('.overlay').style.display = "none"
+  }, 3000)
 }
 
 //------------------------------------- Game play
@@ -58,9 +59,7 @@ function start(data) {
 }
 //........................................ display qus -> Second time start here
 function displayQus(dataText, id) {
-  this.setTimeout(function () {
-    document.querySelector('.overlay').style.display = "none"
-  }, 1000)
+
   console.log(score)
   var qusText = document.querySelector('.ques-container h4')
   dataText = dataText
@@ -122,17 +121,19 @@ function reset(id, dataText) {
   this.setTimeout(function () {
     document.querySelectorAll('.ans').forEach(e => e.remove())
     displayQus(dataText, id)
-  }, 2000)
+  }, 1000)
 
   if (oldIdArr.length === 1) {
     this.setTimeout(function () {
       document.querySelectorAll('.ans').forEach(e => e.remove())
       document.querySelector('.ques-container h4').remove()
       document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a true dectective!"
-    }, 2000)
+    }, 1000)
     //------------------------------- Local Storage
     finalScoreArr.push(score)
     localStorage.setItem('finalScore', finalScoreArr)
+
+
 
   } else {
 
