@@ -8,7 +8,8 @@ var score = 0 * 1
 
 const maxHighScore = 20
 
-finalScore = JSON.parse(localStorage.getItem('finalScore')) || []
+const finalScore = JSON.parse(localStorage.getItem('finalScore')) || []
+
 localStorage.setItem('finalScore', JSON.stringify(finalScore))
 
 // localStorage.clear()
@@ -64,7 +65,6 @@ function start(data) {
 //........................................ display qus -> Second time start here
 function displayQus(dataText, id) {
 
-  console.log(score)
   var qusText = document.querySelector('.ques-container h4')
   dataText = dataText
   id = 0
@@ -133,10 +133,13 @@ function reset(id, dataText) {
       document.querySelector('.ques-container h4').remove()
       document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a true dectective!"
     }, 1000)
+
     //------------------------------- Local Storage
 
     finalScore.push(score)
     localStorage.setItem('finalScore', JSON.stringify(finalScore))
+
+    //------------------------------- Name board to Save high score
 
   } else {
 

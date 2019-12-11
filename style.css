@@ -8,6 +8,30 @@ body{
   margin: 0;
   padding: 0;
 }
+/* ---------------------------------- Score board -------------------------------*/
+.overlay .save-score{
+  -webkit-transform: translateY(5vmin);
+  transform: translateY(10vmin);
+}
+.overlay input{
+width: 30vmax;
+height: 5vmax;
+font-size: 3vmax;
+outline:none;
+text-align: center;
+color: darkgrey;
+}
+.overlay nav{
+  width: 50 vmin;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10vmin;
+}
+.overlay nav h3{
+margin: 0 10vh;
+}
+
 /* ---------------------------------- overlay -------------------------------*/
 .zero-opacity{
   opacity: 0;
@@ -204,6 +228,7 @@ main{
 .ques-container h4{
   display: table-cell;
   vertical-align: middle;
+  margin: auto auto;
 }
 .ans-container{
   display: flex;
