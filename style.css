@@ -204,6 +204,7 @@ main{
 .ques-container h4{
   display: table-cell;
   vertical-align: middle;
+  margin: auto auto;
 }
 .ans-container{
   display: flex;
