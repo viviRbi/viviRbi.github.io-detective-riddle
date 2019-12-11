@@ -1,4 +1,10 @@
 /* ------------------------------------------------------------------------------------- */
+@media (min-width: 748px){
+  .final .ques-container{
+    margin-top: 30vmin;
+  }
+}
+
 @media (min-width: 748px) and (max-width: 1271){
 
   .ans-container{
