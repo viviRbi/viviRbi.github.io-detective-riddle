@@ -12,7 +12,7 @@ const finalScore = JSON.parse(localStorage.getItem('finalScore')) || []
 
 localStorage.setItem('finalScore', JSON.stringify(finalScore))
 
-localStorage.clear()
+// localStorage.clear()
 
 //------------------------------------ Fetch JSON -------------------
 
@@ -135,8 +135,9 @@ function reset(id, dataText) {
     }, 1000)
 
     //------------------------------- Local Storage
-    localStorage.setItem('finalScore', JSON.stringify(finalScore))
+
     finalScore.push(score)
+    localStorage.setItem('finalScore', JSON.stringify(finalScore))
 
 
     //------------------------------- Name board to Save high score
