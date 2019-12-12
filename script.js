@@ -4,7 +4,7 @@ var score = 0 * 1
 //------------------------------------ Local Storage---------------
 const finalScore = JSON.parse(localStorage.getItem('finalScore')) || []
 localStorage.setItem('finalScore', JSON.stringify(finalScore))
-localStorage.clear()
+// localStorage.clear()
 //------------------------------------ Fetch JSON -------------------
 fetch("./qus.json")
   .then(response => response.json())
@@ -150,8 +150,6 @@ function getTodayDate(score) {
   finalScore.push(data)
   localStorage.setItem('finalScore', JSON.stringify(finalScore))
 }
-
-
 //------------------------------- Create High score Board ---------------------------
 function createScoreBoard() {
   var boardContainer = document.querySelector('.score-container')
