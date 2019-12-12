@@ -62,5 +62,36 @@
     ],
     "ans": "Cook: I was cooking breakfast.",
     "explain": "The cook did it. You don’t cook breakfast in the afternoon."
+  },
+  {
+    "qus": "A man was killed in his office. At the time of murder there were only four people in the office: Bill, Tom, Harry and Mike. After analysis, the police found out that only one person was telling the truth and the rest were lying. Who is telling the truth?",
+    "quotes": [
+      "Bill: Tom did it.",
+      "Tom: “Bill did it.",
+      "Harry: “Tom’s telling the truth.",
+      "Mike: “Harry’s not lying."
+    ],
+    "ans": "Tom: “Bill did it.",
+    "explain": "Tom is the killer and Bill spoke the truth.If Bill was the killer, both Tom and Harry will be telling the truth.If Harry was the killer, none of the statements will be true. If Mike was the killer, none of the statements will be true."
+  },
+  {
+    "qus": "An old man ankit lives alone in a flat. On Friday while delivering the mail , the postman saw the old man dead. CID arrived the scene. On the outside of flat , he found some delivery items. Who is the murderer.",
+    "quotes": [
+      "The postman: some unopened mails, some gifts",
+      "The newspaper deliver: Tuesday newspaper",
+      "The milk deliver: two bottles of warm milk"
+    ],
+    "ans": "The newspaper deliver",
+    "explain": "Newspaper delivery man was the murderer because of absence of Wednesday and Thursday missing newspaper. This indicates he already know that there is no one to read it."
+  },
+  {
+    "qus": "Three spies, suspected as double agents, speak as follows when questioned:",
+    "quotes": [
+      "Albert: Bertie is a mole.",
+      "Bertie: Cedric is a mole.",
+      "Cedric: Bertie is lying."
+    ],
+    "ans": "Bertie: Cedric is a mole.",
+    "explain": "When Albert said, “Bertie is a mole,” he was telling the truth, and giving the correct answer. When Bertie said, “Cedric is a mole,” he was lying, as he himself is a lying mole. When Cedric responded, “Bertie is lying,” he was telling the truth, and also affirming that Bertie was lying."
   }
 ]

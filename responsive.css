@@ -78,6 +78,7 @@
     margin: 5vmax 0;
   }
   /* ------------------ header ------------- */
+
   header h2{
     font-size: 5vmin;
   }
@@ -90,15 +91,18 @@
   /* ------------------ qus------------- */
 
   .qus-container{
-    margin-top: 10vmax;
-    margin-bottom: 20vmax;
+
+    height: 40vmin;
+    line-height: 3vmin;
   }
 /* ------------------ ans ------------- */
   .ans-container{
     flex-direction: column;
     width: 70vw;
     margin-top: 10vmin;
-    margin-bottom: 10vmin
+    margin-bottom: 10vmin;
+    justify-content: space-around;
+    align-items: center;
   }
   .ans{
     width: 70vw;

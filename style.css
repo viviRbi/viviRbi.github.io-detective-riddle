@@ -1,7 +1,7 @@
 body{
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   text-align: center;
   position: relative;
   color: grey;
@@ -269,18 +269,6 @@ cursor: pointer;
   0%{opacity: .4;}
   100%{opacity: .7;}
 }
-/* ------------------------canvas------------------------- */
-/* #canvas{
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: white;
-  z-index: 50;
-} */
 /* ---------------------------------- header -------------------------------*/
 header{
   margin-top: 0;
@@ -335,26 +323,26 @@ header .score span:first-child{
 
 /* ---------------------------------- main body -------------------------------*/
 main{
-  margin: 0 10vmin 5vmin 10vmin;
+  position: relative;
+  margin-top: 10vmin;
+  margin-bottom: 5vmin ;
   width: 70vw;
-  position: absolute;
   left: 50%;
   margin-left: -35vw;
   height: 100vh;
-  top:15%;
 }
 
 .ques-container{
   line-height: 6vmin;
   height: 20vmin;
-  display: table;
-  overflow: hidden;
   text-align: center;
+  display: table;
+  margin: 0 auto;
 }
 .ques-container h4{
   display: table-cell;
-  vertical-align: middle;
   margin: auto auto;
+  vertical-align: middle;
 }
 .ans-container{
   display: flex;

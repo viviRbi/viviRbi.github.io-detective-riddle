@@ -28,12 +28,12 @@ function restartGame() {
     .catch(err => console.log("err", err))
 }
 //------------------------------------ Start Game ----------------------
-window.onclick = function () {
+document.querySelector('.overlay').addEventListener('click', function () {
   document.querySelector('.overlay').classList.add("zero-opacity")
-  this.setTimeout(function () {
+  window.setTimeout(function () {
     document.querySelector('.overlay').style.display = "none"
-  }, 3000)
-}
+  }, 4000)
+})
 //------------------------------------- Game play
 //......................... grab some info for id & qus the First time
 function start(data) {
@@ -44,8 +44,6 @@ function start(data) {
 }
 //........................................ display qus -> Second time start here
 function displayQus(dataText, id) {
-  //remove block
-  document.querySelector('.overlay').style.display = "none"
   var qusText = document.querySelector('.ques-container h4')
   dataText = dataText
   id = 0
@@ -55,6 +53,7 @@ function displayQus(dataText, id) {
   qusText.innerText = dataText[id].qus
   displayAns(dataText, id)
 }
+
 //............................................... display ans (grab some info)
 function displayAns(dataText, id) {
   dataText = dataText
@@ -72,16 +71,14 @@ function displayAns(dataText, id) {
   var ansArr = document.querySelectorAll('.ans')
   var quoteText = document.querySelectorAll('h5')
   //............................................... ans on click
-  for (let i = 0; i < ansArr.length; i++) {
-    if (!ansArr[i].classList.contains('ans-click')) {
+  if (!ansArr.forEach(e => e.classList.contains('ans-click'))) {
+    for (let i = 0; i < ansArr.length; i++) {
       ansArr[i].addEventListener('click', function (event) {
         this.classList.add('ans-click')
-        // set overlay to prevent player from click the 2nd time
-        document.querySelector('.overlay').style.display = "block"
+        // this.classList.remove('hover')
         if (quoteText[i].textContent == dataText[id].ans) {
           document.querySelector('.right-wrong').innerText = "Genius!"
           score += 1 * 1
-          console.log(score)
           document.querySelector('.score .score-display').innerText = score
           reset(id, dataText)
         } else {
@@ -98,19 +95,21 @@ function reset(id, dataText) {
   document.querySelector('.check').style.opacity = 1
   id = id
   dataText = dataText
-  this.setTimeout(function () {
-    document.querySelectorAll('.ans').forEach(e => e.remove())
+  document.querySelectorAll('.ans').forEach(e => e.remove())
+  document.querySelector('.ques-container h4').innerHTML = " "
+  setTimeout(function () {
     displayQus(dataText, id)
-  }, 1000)
+  }, 2000)
   if (oldIdArr.length === 1) {
     this.setTimeout(function () {
       document.querySelectorAll('.ans').forEach(e => e.remove())
+      document.querySelector('.check').remove()
       document.querySelector('.ques-container h4').remove()
       document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a true dectective!"
       document.querySelector('.overlay-score').display = "block"
     }, 1000)
     getTodayDate(score)
-    //------ Display overlay score board
+    //........................................ Display overlay score board
     var overlayScore = document.querySelector('.overlay-score')
     overlayScore.style.display = "block"
     document.querySelector('.overlay').style.display = "none"
@@ -123,7 +122,7 @@ function reset(id, dataText) {
       document.querySelector('.overlay-score .save').addEventListener('click', function () {
         document.querySelector('.name-container h2').innerText = document.querySelector('.overlay-score input').value
       })
-    }, 2000)
+    })
   } else {
     oldIdArr.shift()
   }
