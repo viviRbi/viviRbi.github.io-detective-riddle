@@ -1,29 +1,17 @@
 //------------------------------------ Global -------------------
-
 var oldIdArr = []
 var score = 0 * 1
-
 //------------------------------------ Local Storage---------------
-// ref https://github.com/jamesqquick/Build-A-Quiz-App-With-HTML-CSS-and-JavaScript/blob/master/9.%20Load%20and%20Display%20High%20Scores%20from%20Local%20Storage/end.js
-
 const finalScore = JSON.parse(localStorage.getItem('finalScore')) || []
 localStorage.setItem('finalScore', JSON.stringify(finalScore))
-
-localStorage.clear()
-
-
+// localStorage.clear()
 //------------------------------------ Fetch JSON -------------------
-
 fetch("./qus.json")
   .then(response => response.json())
   .then(data => { start(data) })
   .catch(err => console.log("err", err))
-
-
 //------------------------------------ Reset -------------------
-
 document.querySelector('.reset').addEventListener('click', restartGame)
-
 function restartGame() {
   document.querySelectorAll('.ans').forEach(e => e.remove())
   score = 0 * 1
@@ -39,33 +27,23 @@ function restartGame() {
     .then(data => { start(data) })
     .catch(err => console.log("err", err))
 }
-
-
 //------------------------------------ Start Game ----------------------
-
 window.onclick = function () {
-
   document.querySelector('.overlay').classList.add("zero-opacity")
   this.setTimeout(function () {
     document.querySelector('.overlay').style.display = "none"
   }, 3000)
 }
-
 //------------------------------------- Game play
-
-
 //......................... grab some info for id & qus the First time
 function start(data) {
   var dataText = data
   oldIdArr = shuffle(dataText)
   var id = oldIdArr[0]
   displayQus(dataText, id)
-
-
 }
 //........................................ display qus -> Second time start here
 function displayQus(dataText, id) {
-
   var qusText = document.querySelector('.ques-container h4')
   dataText = dataText
   id = 0
@@ -75,28 +53,23 @@ function displayQus(dataText, id) {
   qusText.innerText = dataText[id].qus
   displayAns(dataText, id)
 }
-
 //............................................... display ans (grab some info)
 function displayAns(dataText, id) {
   dataText = dataText
   id = id
   var ansContainer = document.querySelector('.ans-container')
-
   //...............................................  start to display ans
   for (let i = 0; i < dataText[id].quotes.length; i++) {
     var ans = document.createElement('article')
     ans.setAttribute('class', 'ans')
     ansContainer.appendChild(ans)
-
     var quoteText = document.createElement('h5')
     ans.appendChild(quoteText)
-
     quoteText.textContent = dataText[id].quotes[i]
   }
   var ansArr = document.querySelectorAll('.ans')
   var quoteText = document.querySelectorAll('h5')
   //............................................... ans on click
-
   for (let i = 0; i < ansArr.length; i++) {
     if (!ansArr[i].classList.contains('ans-click')) {
       ansArr[i].addEventListener('click', function (event) {
@@ -117,9 +90,8 @@ function displayAns(dataText, id) {
     }
   }
 }
-
+//............................................... After choose an ans
 function reset(id, dataText) {
-
   document.querySelector('.conclusion-container').style.display = "none"
   document.querySelector('.check').style.opacity = 1
   id = id
@@ -128,7 +100,6 @@ function reset(id, dataText) {
     document.querySelectorAll('.ans').forEach(e => e.remove())
     displayQus(dataText, id)
   }, 1000)
-
   if (oldIdArr.length === 1) {
     this.setTimeout(function () {
       document.querySelectorAll('.ans').forEach(e => e.remove())
@@ -137,8 +108,6 @@ function reset(id, dataText) {
       document.querySelector('.overlay-score').display = "block"
     }, 1000)
     getTodayDate(score)
-
-
     //------ Display overlay score board
     var overlayScore = document.querySelector('.overlay-score')
     overlayScore.style.display = "block"
@@ -149,18 +118,12 @@ function reset(id, dataText) {
       document.querySelector('.restart').addEventListener('click', function () {
         location.reload()
       })
-
-
-
       document.querySelector('.overlay-score .save').addEventListener('click', function () {
         document.querySelector('.name-container h2').innerText = document.querySelector('.overlay-score input').value
       })
     }, 2000)
-
   } else {
-
     oldIdArr.shift()
-
   }
 }
 //------------------------------- Get Date -----------------------------------
@@ -171,48 +134,36 @@ function getTodayDate(score) {
   var yy = todayDay.getFullYear()
   var hour = todayDay.getHours()
   var min = todayDay.getMinutes()
-
   if (dd < 10) { dd = `0${dd}` }
   if (mm < 10) { mm = `0${mm}` }
   if (hour < 10) { hour = `0${hour}` }
   if (min < 10) { min = `0${min}` }
-
   todayDay = `${mm}-${dd}-${yy} ${hour}:${min}`
-
   //------Local Storage
   score = score
   const data = {
     score: score,
-    date: todayDay,
+    date: todayDay
   }
-
   finalScore.push(data)
   localStorage.setItem('finalScore', JSON.stringify(finalScore))
-  // console.log(finalScore)
-
-
 }
 
 
 //------------------------------- Create High score Board ---------------------------
 function createScoreBoard() {
-
   var boardContainer = document.querySelector('.score-container')
   const value = finalScore
-  console.log('value', value)
   for (let i = 0; i < value.length; i++) {
     var ul = document.createElement('ul')
     var date = document.createElement('li')
     var score = document.createElement('li')
-
     ul.setAttribute('class', 'date-score-holder')
     date.setAttribute('class', 'date-display')
     score.setAttribute('class', 'score-display')
-
     boardContainer.appendChild(ul)
     ul.appendChild(date)
     ul.appendChild(score)
-
     date.innerText = value[i].date
     score.innerText = value[i].score
   }
@@ -221,7 +172,6 @@ createScoreBoard()
 //------------------------------ Shuffle
 // copy from source
 // https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
-
 function shuffle(a) {
   var random, index, firstChild;
   for (index = a.length - 1; index > 0; index--) {
