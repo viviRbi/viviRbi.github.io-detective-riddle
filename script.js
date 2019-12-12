@@ -146,10 +146,13 @@ function reset(id, dataText) {
     window.setTimeout(function () {
       overlayScore.style.opacity = "1"
       // Button
-      document.querySelector('.restart').addEventListener('click', restartGame)
+      document.querySelector('.restart').addEventListener('click', function () {
+        location.reload()
+      })
+
+
 
       document.querySelector('.overlay-score .save').addEventListener('click', function () {
-        alert('click')
         document.querySelector('.name-container h2').innerText = document.querySelector('.overlay-score input').value
       })
     }, 2000)
