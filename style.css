@@ -8,30 +8,156 @@ body{
   margin: 0;
   padding: 0;
 }
+::placeholder {
+  color: rgb(168, 168, 168);
+  opacity: 1; /* Firefox */
+  text-align: center;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color:  rgb(168, 168, 168);
+ text-align: center;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: rgb(168, 168, 168);
+ text-align: center;
+}
 /* ---------------------------------- Score board -------------------------------*/
-.overlay .save-score{
-  -webkit-transform: translateY(5vmin);
+.overlay-score{
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: white;
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  transition: all 0.8s ease-out;
+  -moz-transition: all 0.8s ease-out;
+  -webkit-transition: all 0.8s ease-out;
+  -o-transition: all 0.8s ease-out;
+  -ms-transition: all 0.8s ease-out;
+  display: none;
+  opacity: 0.1;
+}
+.overlay-score .save-score{
+  -webkit-transform: translateY(10vmin);
   transform: translateY(10vmin);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  align-self: center;
 }
-.overlay input{
-width: 30vmax;
-height: 5vmax;
-font-size: 3vmax;
-outline:none;
-text-align: center;
-color: darkgrey;
+.board{
+  position: relative;
+  width: 60vmax;
+  height: 60vh;
+  border-radius: 10px;
+  overflow-x: hidden;
+  -webkit-box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+
+  /* overflow-y: scroll; */
 }
-.overlay nav{
-  width: 50 vmin;
+/* ::-webkit-scrollbar{
+  background: none;
+  border: none;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb{
+  background: grey;
+  border-radius: 10px;
+  opacity: .2;
+} */
+.board .name-container{
+  height: 10vmin;
+  width: 60vmax;
+  margin-bottom: 5vmin;
+}
+.board .name-container h2{
+  display: block;
+  color: white;
+  background: grey;
+  font-weight: 100;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.board .score-container{
+  display: block;
+  justify-content: space-around;
+  align-items: center;
+  width: 70vmin;
+  height: 60vh;
+  margin: 0 auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar{
+  background: none;
+}
+::-webkit-scrollbar-thumb{
+  background: whitesmoke;
+}
+.date-score-holder{
+  /* display: table-cell; */
+  left: 0;
+  right: 0;
+  height: 7vmin;
+  margin: 4vmin auto;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 3vmin;
+  padding-bottom: 20px;
+  border-bottom: 1px solid lightgray;
+  width: 70vmin;
+}
+.date-score-holder .date-display{
+  display: inline-block;
+  text-align: left;
+}
+.date-score-holder .score-display{
+  text-align: center;
+  display: inline-block;
+  padding: 1vmin;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+  max-width: 20vmin;
+  width: 10vmin;
+  margin: 0 10vmin;
+}
+
+.overlay-score nav{
+  width: 50vmin;
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-top: 10vmin;
+  align-items: center;
 }
-.overlay nav h3{
-margin: 0 10vh;
+.overlay-score nav input{
+  width: 30vmax;
+  height: 5vmin;
+  font-size: 3vmin;
+  outline:none;
+  text-align: center;
+  color: darkgrey;
+  margin: 3vmax;
+  border-radius: 10px;
 }
 
+.overlay-score nav h3{
+margin: 0 10vh;
+cursor: pointer;
+}
+.overlay-score nav h3:hover{
+  color: rgb(160, 160, 160);
+}
 /* ---------------------------------- overlay -------------------------------*/
 .zero-opacity{
   opacity: 0;

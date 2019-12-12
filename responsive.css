@@ -3,6 +3,9 @@
   .final .ques-container{
     margin-top: 30vmin;
   }
+  .overlay nav{
+    margin: 3vmin;
+  }
 }
 
 @media (min-width: 748px) and (max-width: 1271){
@@ -26,9 +29,53 @@
 
 /* ###############################  END  ############################### */
 
+@media screen and (min-width: 747px) and (max-width: 925px){
+  .date-score-holder{
+    /* display: table-cell; */
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 400px;
+  }
+}
+
 @media screen and (max-width: 747px){
   body{
     overflow: auto;
+  }
+    /* ------------------ score board ------------- */
+  .board .name-container{
+    width: 60vmin;
+    margin-bottom: 4vmin;
+    text-align: center;
+  }
+  .board .name-container h2{
+    margin: auto auto;
+  }
+  .board .score-container{
+    margin: 0 auto;
+ 
+    min-width: 300px;
+    width: 300px;
+  }
+  .date-score-holder{
+    /* display: table-cell; */
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    min-width: 280px;
+    width: 280px;
+  }
+  .date-score-holder .date-display{
+
+  }
+  .date-score-holder .score-display{
+    margin: 0 auto;
+
+  }
+  .overlay-score nav{
+    flex-direction: column;
+    margin: 5vmax 0;
   }
   /* ------------------ header ------------- */
   header h2{

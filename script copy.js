@@ -7,10 +7,10 @@ var score = 0 * 1
 // ref https://github.com/jamesqquick/Build-A-Quiz-App-With-HTML-CSS-and-JavaScript/blob/master/9.%20Load%20and%20Display%20High%20Scores%20from%20Local%20Storage/end.js
 
 const finalScore = JSON.parse(localStorage.getItem('finalScore')) || []
+
 localStorage.setItem('finalScore', JSON.stringify(finalScore))
 
 // localStorage.clear()
-
 
 //------------------------------------ Fetch JSON -------------------
 
@@ -22,13 +22,11 @@ fetch("./qus.json")
 
 //------------------------------------ Reset -------------------
 
-document.querySelector('.reset').addEventListener('click', restartGame)
-
-function restartGame() {
+document.querySelector('.reset').addEventListener('click', function () {
   document.querySelectorAll('.ans').forEach(e => e.remove())
   score = 0 * 1
   document.querySelector('.final .conclusion-container').innerText = "Who is lying?"
-  document.querySelector('.score .score-display').innerText = score
+  document.querySelector('.score-display').innerText = score
   if (document.querySelector('.ques-container h4') === null || document.querySelector('.ques-container h4') === undefined) {
     var qusText = document.createElement('h4')
     var qusHolder = document.querySelector('.ques-container')
@@ -38,8 +36,7 @@ function restartGame() {
     .then(response => response.json())
     .then(data => { start(data) })
     .catch(err => console.log("err", err))
-}
-
+})
 
 //------------------------------------ Start Game ----------------------
 
@@ -106,8 +103,7 @@ function displayAns(dataText, id) {
         if (quoteText[i].textContent == dataText[id].ans) {
           document.querySelector('.right-wrong').innerText = "Genius!"
           score += 1 * 1
-          console.log(score)
-          document.querySelector('.score .score-display').innerText = score
+          document.querySelector('.score-display').innerText = score
           reset(id, dataText)
         } else {
           document.querySelector('.right-wrong').innerText = "Incorrect"
@@ -134,25 +130,15 @@ function reset(id, dataText) {
       document.querySelectorAll('.ans').forEach(e => e.remove())
       document.querySelector('.ques-container h4').remove()
       document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a true dectective!"
-      document.querySelector('.overlay-score').display = "block"
     }, 1000)
-    getTodayDate(score)
+
+    //------------------------------- Local Storage
+
+    finalScore.push(score)
+    localStorage.setItem('finalScore', JSON.stringify(finalScore))
 
 
-    //------ Display overlay score board
-    var overlayScore = document.querySelector('.overlay-score')
-    overlayScore.style.display = "block"
-    document.querySelector('.overlay').style.display = "none"
-    window.setTimeout(function () {
-      overlayScore.style.opacity = "1"
-      // Button
-      document.querySelector('.restart').addEventListener('click', reset)
-
-      document.querySelector('.overlay-score .save').addEventListener('click', function () {
-        alert('click')
-        document.querySelector('.name-container h2').innerText = document.querySelector('.overlay-score input').value
-      })
-    }, 2000)
+    //------------------------------- Name board to Save high score
 
   } else {
 
@@ -160,61 +146,6 @@ function reset(id, dataText) {
 
   }
 }
-//------------------------------- Get Date -----------------------------------
-function getTodayDate(score) {
-  var todayDay = new Date()
-  var dd = todayDay.getDate()
-  var mm = todayDay.getMonth()
-  var yy = todayDay.getFullYear()
-  var hour = todayDay.getHours()
-  var min = todayDay.getMinutes()
-
-  if (dd < 10) { dd = `0${dd}` }
-  if (mm < 10) { mm = `0${mm}` }
-  if (hour < 10) { hour = `0${hour}` }
-  if (min < 10) { min = `0${min}` }
-
-  todayDay = `${mm}-${dd}-${yy} ${hour}:${min}`
-
-  //------Local Storage
-  score = score
-  const data = {
-    score: score,
-    date: todayDay,
-  }
-
-  finalScore.push(data)
-  localStorage.setItem('finalScore', JSON.stringify(finalScore))
-  // console.log(finalScore)
-
-
-}
-
-
-//------------------------------- Create High score Board ---------------------------
-function createScoreBoard() {
-
-  var boardContainer = document.querySelector('.score-container')
-  const value = finalScore
-  console.log('value', value)
-  for (let i = 0; i < value.length; i++) {
-    var ul = document.createElement('ul')
-    var date = document.createElement('li')
-    var score = document.createElement('li')
-
-    ul.setAttribute('class', 'date-score-holder')
-    date.setAttribute('class', 'date-display')
-    score.setAttribute('class', 'score-display')
-
-    boardContainer.appendChild(ul)
-    ul.appendChild(date)
-    ul.appendChild(score)
-
-    date.innerText = value[i].date
-    score.innerText = value[i].score
-  }
-}
-createScoreBoard()
 //------------------------------ Shuffle
 // copy from source
 // https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
