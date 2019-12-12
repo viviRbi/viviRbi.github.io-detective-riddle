@@ -32,7 +32,7 @@ document.querySelector('.overlay').addEventListener('click', function () {
   document.querySelector('.overlay').classList.add("zero-opacity")
   window.setTimeout(function () {
     document.querySelector('.overlay').style.display = "none"
-  }, 4000)
+  }, 1000)
 })
 //------------------------------------- Game play
 //......................... grab some info for id & qus the First time
