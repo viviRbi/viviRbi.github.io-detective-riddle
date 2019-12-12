@@ -4,7 +4,7 @@ var score = 0 * 1
 //------------------------------------ Local Storage---------------
 const finalScore = JSON.parse(localStorage.getItem('finalScore')) || []
 localStorage.setItem('finalScore', JSON.stringify(finalScore))
-// localStorage.clear()
+localStorage.clear()
 //------------------------------------ Fetch JSON -------------------
 fetch("./qus.json")
   .then(response => response.json())
@@ -44,6 +44,8 @@ function start(data) {
 }
 //........................................ display qus -> Second time start here
 function displayQus(dataText, id) {
+  //remove block
+  document.querySelector('.overlay').style.display = "none"
   var qusText = document.querySelector('.ques-container h4')
   dataText = dataText
   id = 0
