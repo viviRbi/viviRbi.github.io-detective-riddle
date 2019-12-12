@@ -149,11 +149,13 @@ function getTodayDate(score) {
   }
   finalScore.push(data)
   localStorage.setItem('finalScore', JSON.stringify(finalScore))
+  createScoreBoard()
 }
 //------------------------------- Create High score Board ---------------------------
 function createScoreBoard() {
   var boardContainer = document.querySelector('.score-container')
   const value = finalScore
+  console.log(value)
   for (let i = 0; i < value.length; i++) {
     var ul = document.createElement('ul')
     var date = document.createElement('li')
@@ -166,9 +168,9 @@ function createScoreBoard() {
     ul.appendChild(score)
     date.innerText = value[i].date
     score.innerText = value[i].score
+    console.log(value[i].date)
   }
 }
-createScoreBoard()
 //------------------------------ Shuffle
 // copy from source
 // https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array

@@ -40,5 +40,27 @@
     ],
     "ans": "The Maid: I was dusting the corners of the house.",
     "explain": "The maid was lying. There are no corners in a circular house."
+  },
+  {
+    "qus": "It was the first day of school when a young girl was found dead in the classroom. Police had identified four suspects.",
+    "quotes": [
+      "The Dean claimed that he was in his office the whole day.",
+      "The Maths teacher claimed that she was giving the midterm exam results to her students.",
+      "The clerk claimed that he was bringing the mails.",
+      "The janitor claimed that he was cleaning the toilet on the first floor."
+    ],
+    "ans": "The Maths teacher claimed that she was giving the midterm exam results to her students.",
+    "explain": "The Maths teacher was lying. She cannot be giving the midterm exam results on the first day of school."
+  },
+  {
+    "qus": "A rich and handsome man named James Leonard was murdered on a Sunday afternoon. At the time of the murder there was: the maid, the cook, the butler and the wife. They gave the following statements.",
+    "quotes": [
+      "Maid: I was fixing the table.",
+      "Cook: I was cooking breakfast.",
+      "Butler: I was polishing the silverware and the dishes.",
+      "Wife: I was reading a book."
+    ],
+    "ans": "Cook: I was cooking breakfast.",
+    "explain": "The cook did it. You don’t cook breakfast in the afternoon."
   }
 ]
