@@ -42,24 +42,32 @@ function start(data) {
   var id = oldIdArr[0]
   displayQus(dataText, id)
 }
-//........................................ display qus -> Second time start here
+//------------------------------------- display qus -> Second time start here
 function displayQus(dataText, id) {
   var qusText = document.querySelector('.ques-container h4')
   dataText = dataText
   id = 0
   document.querySelector('.conclusion-container').style.display = "block"
-  document.querySelector('.check').style.opacity = 0
+  document.querySelector('.check').style.opacity = "0"
   document.querySelector('.check .explain').innerText = dataText[id].explain
   qusText.innerText = dataText[id].qus
-  displayAns(dataText, id)
-}
+  // setTimeout(function () {
 
-//............................................... display ans (grab some info)
+  //   reset(dataText, id)
+  // }, 3000)
+  displayAns(dataText, id)
+
+}
+//-------------------------------------  display ans (grab some info)
 function displayAns(dataText, id) {
-  dataText = dataText
-  id = id
   var ansContainer = document.querySelector('.ans-container')
-  //...............................................  start to display ans
+  createAns(dataText, id, ansContainer)
+  var ansArr = document.querySelectorAll('.ans')
+  var quoteText = document.querySelectorAll('h5')
+  ansOnClick(dataText, id, ansArr, quoteText)
+}
+//-------------------------------------   create ans element
+function createAns(dataText, id, ansContainer) {
   for (let i = 0; i < dataText[id].quotes.length; i++) {
     var ans = document.createElement('article')
     ans.setAttribute('class', 'ans')
@@ -68,14 +76,13 @@ function displayAns(dataText, id) {
     ans.appendChild(quoteText)
     quoteText.textContent = dataText[id].quotes[i]
   }
-  var ansArr = document.querySelectorAll('.ans')
-  var quoteText = document.querySelectorAll('h5')
-  //............................................... ans on click
+}
+//---------------------------------------------ans on click
+function ansOnClick(dataText, id, ansArr, quoteText) {
   if (!ansArr.forEach(e => e.classList.contains('ans-click'))) {
     for (let i = 0; i < ansArr.length; i++) {
-      ansArr[i].addEventListener('click', function (event) {
-        this.classList.add('ans-click')
-        // this.classList.remove('hover')
+      ansArr[i].addEventListener('click', function (e) {
+        e.target.classList.add('ans-click')
         if (quoteText[i].textContent == dataText[id].ans) {
           document.querySelector('.right-wrong').innerText = "Genius!"
           score += 1 * 1
@@ -89,43 +96,51 @@ function displayAns(dataText, id) {
     }
   }
 }
-//............................................... After choose an ans
+//---------------------------------After choose an ans// reset
 function reset(id, dataText) {
   document.querySelector('.conclusion-container').style.display = "none"
   document.querySelector('.check').style.opacity = 1
-  id = id
-  dataText = dataText
   document.querySelectorAll('.ans').forEach(e => e.remove())
   document.querySelector('.ques-container h4').innerHTML = " "
   setTimeout(function () {
     displayQus(dataText, id)
   }, 2000)
+  outOfQus()
+}
+function outOfQus() {
   if (oldIdArr.length === 1) {
-    this.setTimeout(function () {
-      document.querySelectorAll('.ans').forEach(e => e.remove())
-      document.querySelector('.check').remove()
-      document.querySelector('.ques-container h4').remove()
-      document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a true dectective!"
-      document.querySelector('.overlay-score').display = "block"
-    }, 1000)
-    getTodayDate(score)
+    hideQusAns()
     //........................................ Display overlay score board
     var overlayScore = document.querySelector('.overlay-score')
     overlayScore.style.display = "block"
     document.querySelector('.overlay').style.display = "none"
-    window.setTimeout(function () {
-      overlayScore.style.opacity = "1"
-      // Button
-      document.querySelector('.restart').addEventListener('click', function () {
-        location.reload()
-      })
-      document.querySelector('.overlay-score .save').addEventListener('click', function () {
-        document.querySelector('.name-container h2').innerText = document.querySelector('.overlay-score input').value
-      })
-    })
+    scoreBoardButtons(overlayScore)
+    getTodayDate(score)
   } else {
     oldIdArr.shift()
   }
+}
+//-------------------------------------------------- Hide qus ans
+function hideQusAns() {
+  this.setTimeout(function () {
+    document.querySelectorAll('.ans').forEach(e => e.remove())
+    document.querySelector('.check').remove()
+    document.querySelector('.ques-container h4').remove()
+    document.querySelector('.final .conclusion-container').innerText = "Congrats! You have completes all the riddles. You are a true dectective!"
+    document.querySelector('.overlay-score').display = "block"
+  }, 3000)
+}
+function scoreBoardButtons(overlayScore) {
+  window.setTimeout(function () {
+    overlayScore.style.opacity = "1"
+    // Button
+    document.querySelector('.restart').addEventListener('click', function () {
+      location.reload()
+    })
+    document.querySelector('.overlay-score .save').addEventListener('click', function () {
+      document.querySelector('.name-container h2').innerText = document.querySelector('.overlay-score input').value
+    })
+  })
 }
 //------------------------------- Get Date -----------------------------------
 function getTodayDate(score) {
@@ -141,10 +156,9 @@ function getTodayDate(score) {
   if (min < 10) { min = `0${min}` }
   todayDay = `${mm}-${dd}-${yy} ${hour}:${min}`
   //------Local Storage
-  score = score
   const data = {
     score: score,
-    date: todayDay
+    date: todayDay,
   }
   finalScore.push(data)
   localStorage.setItem('finalScore', JSON.stringify(finalScore))
@@ -167,7 +181,6 @@ function createScoreBoard() {
     ul.appendChild(score)
     date.innerText = value[i].date
     score.innerText = value[i].score
-    console.log(value[i].date)
   }
 }
 //------------------------------ Shuffle

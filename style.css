@@ -58,11 +58,10 @@ body{
   overflow-x: hidden;
   -webkit-box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
-
+  overflow-y: scroll;
   /* overflow-y: scroll; */
 }
 ::-webkit-scrollbar{
-  
 }
 ::-webkit-scrollbar-thumb{
   background: grey;
@@ -81,6 +80,7 @@ body{
   position: absolute;
   left: 0;
   right: 0;
+  font-size: 6vh;
 }
 .board .score-container{
   display: block;
@@ -89,8 +89,6 @@ body{
   width: 70vmin;
   height: 60vh;
   margin: 0 auto;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 ::-webkit-scrollbar{
   background: none;
@@ -355,6 +353,8 @@ main{
   margin: 3vmin 5vmin;
   background: white;
   color: rgb(155, 155, 155);
+  height: auto;
+  width: auto;
   border-radius: 30px;
   padding: 1vmin 2vmin;
   -webkit-box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -400,14 +400,18 @@ main{
   top: 50%;
   left: 50%;
   text-align: center;
-  margin-top: -12vh;
+  margin-top: -25vh;
   margin-left: -35vw;
   opacity: 0;
+}
+.final .right-wrong{
+  font-size: 6vmin;
 }
 .final .check .explain{
   font-weight: 200;
   padding: 0 1vw;
   margin-top: 3vh;
+  line-height: 9vmin;
 }
 
 
