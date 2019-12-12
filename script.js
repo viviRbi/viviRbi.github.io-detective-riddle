@@ -11,30 +11,37 @@ fetch("./qus.json")
   .then(data => { start(data) })
   .catch(err => console.log("err", err))
 //------------------------------------ Reset -------------------
-document.querySelector('.reset').addEventListener('click', restartGame)
-function restartGame() {
+document.querySelector('.reset').addEventListener('click', function () {
+  resetRemoveAdd()
+  checkQusText()
+  fetch("./qus.json")
+    .then(response => response.json())
+    .then(data => { start(data) })
+    .catch(err => console.log("err", err))
+})
+//............................... Reset Remove and Add element 
+function resetRemoveAdd() {
   document.querySelectorAll('.ans').forEach(e => e.remove())
   score = 0 * 1
-  document.querySelector('.final .conclusion-container').innerText = "Who is lying?"
-  document.querySelector('.score .score-display').innerText = score
+  document.querySelector('.check').style.opacity = 1
+  document.querySelectorAll('.ans').forEach(e => e.remove())
+}
+//............................... If ques-container h4 destroyed
+function checkQusText() {
   if (document.querySelector('.ques-container h4') === null || document.querySelector('.ques-container h4') === undefined) {
     var qusText = document.createElement('h4')
     var qusHolder = document.querySelector('.ques-container')
     qusHolder.appendChild(qusText)
   }
-  fetch("./qus.json")
-    .then(response => response.json())
-    .then(data => { start(data) })
-    .catch(err => console.log("err", err))
 }
-//------------------------------------ Start Game ----------------------
+//------------------------------------ Game title----------------------
 document.querySelector('.overlay').addEventListener('click', function () {
   document.querySelector('.overlay').classList.add("zero-opacity")
   window.setTimeout(function () {
     document.querySelector('.overlay').style.display = "none"
   }, 1000)
 })
-//------------------------------------- Game play
+//-------------------------------------Start Game 
 //......................... grab some info for id & qus the First time
 function start(data) {
   var dataText = data
@@ -44,19 +51,17 @@ function start(data) {
 }
 //------------------------------------- display qus -> Second time start here
 function displayQus(dataText, id) {
-  var qusText = document.querySelector('.ques-container h4')
-  dataText = dataText
   id = 0
+  var ansArr = document.querySelectorAll('.ans')
+  if (ansArr) {
+    ansArr.forEach(e => e.remove())
+  }
+  var qusText = document.querySelector('.ques-container h4')
   document.querySelector('.conclusion-container').style.display = "block"
   document.querySelector('.check').style.opacity = "0"
   document.querySelector('.check .explain').innerText = dataText[id].explain
   qusText.innerText = dataText[id].qus
-  // setTimeout(function () {
-
-  //   reset(dataText, id)
-  // }, 3000)
   displayAns(dataText, id)
-
 }
 //-------------------------------------  display ans (grab some info)
 function displayAns(dataText, id) {
@@ -66,7 +71,7 @@ function displayAns(dataText, id) {
   var quoteText = document.querySelectorAll('h5')
   ansOnClick(dataText, id, ansArr, quoteText)
 }
-//-------------------------------------   create ans element
+//.............................. create ans element
 function createAns(dataText, id, ansContainer) {
   for (let i = 0; i < dataText[id].quotes.length; i++) {
     var ans = document.createElement('article')
@@ -77,7 +82,7 @@ function createAns(dataText, id, ansContainer) {
     quoteText.textContent = dataText[id].quotes[i]
   }
 }
-//---------------------------------------------ans on click
+//.................................ans on click
 function ansOnClick(dataText, id, ansArr, quoteText) {
   if (!ansArr.forEach(e => e.classList.contains('ans-click'))) {
     for (let i = 0; i < ansArr.length; i++) {
@@ -96,7 +101,7 @@ function ansOnClick(dataText, id, ansArr, quoteText) {
     }
   }
 }
-//---------------------------------After choose an ans// reset
+//.........................After choose an ans// reset
 function reset(id, dataText) {
   document.querySelector('.conclusion-container').style.display = "none"
   document.querySelector('.check').style.opacity = 1
@@ -107,6 +112,7 @@ function reset(id, dataText) {
   }, 2000)
   outOfQus()
 }
+//......................... If out of question
 function outOfQus() {
   if (oldIdArr.length === 1) {
     hideQusAns()
@@ -120,7 +126,7 @@ function outOfQus() {
     oldIdArr.shift()
   }
 }
-//-------------------------------------------------- Hide qus ans
+//...................................................Hide qus ans
 function hideQusAns() {
   this.setTimeout(function () {
     document.querySelectorAll('.ans').forEach(e => e.remove())
@@ -130,6 +136,7 @@ function hideQusAns() {
     document.querySelector('.overlay-score').display = "block"
   }, 3000)
 }
+//-------------------------------------------------- Scoreboard Fade in and button function
 function scoreBoardButtons(overlayScore) {
   window.setTimeout(function () {
     overlayScore.style.opacity = "1"
@@ -168,7 +175,6 @@ function getTodayDate(score) {
 function createScoreBoard() {
   var boardContainer = document.querySelector('.score-container')
   const value = finalScore
-  console.log(value)
   for (let i = 0; i < value.length; i++) {
     var ul = document.createElement('ul')
     var date = document.createElement('li')
@@ -183,13 +189,15 @@ function createScoreBoard() {
     score.innerText = value[i].score
   }
 }
-//------------------------------ Shuffle
+//------------------------------ Shuffle ---------------------------
 // copy from source
 // https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
 function shuffle(a) {
   var random, index, firstChild;
   for (index = a.length - 1; index > 0; index--) {
+    // to keep random number <index the same, not swap them
     random = Math.floor(Math.random() * (index + 1));
+    // swap all number index hadn't pass
     firstChild = a[index];
     a[index] = a[random];
     a[random] = firstChild;
