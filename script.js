@@ -9,7 +9,7 @@ var score = 0 * 1
 const finalScore = JSON.parse(localStorage.getItem('finalScore')) || []
 localStorage.setItem('finalScore', JSON.stringify(finalScore))
 
-// localStorage.clear()
+localStorage.clear()
 
 
 //------------------------------------ Fetch JSON -------------------
@@ -146,7 +146,7 @@ function reset(id, dataText) {
     window.setTimeout(function () {
       overlayScore.style.opacity = "1"
       // Button
-      document.querySelector('.restart').addEventListener('click', reset)
+      document.querySelector('.restart').addEventListener('click', restartGame)
 
       document.querySelector('.overlay-score .save').addEventListener('click', function () {
         alert('click')
