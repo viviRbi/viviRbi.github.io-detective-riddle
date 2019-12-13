@@ -6,23 +6,30 @@ const finalScore = JSON.parse(localStorage.getItem('finalScore')) || []
 localStorage.setItem('finalScore', JSON.stringify(finalScore))
 // localStorage.clear()
 //------------------------------------ Fetch JSON -------------------
-fetch("./qus.json")
-  .then(response => response.json())
-  .then(data => { start(data) })
-  .catch(err => console.log("err", err))
-//------------------------------------ Reset -------------------
-document.querySelector('.reset').addEventListener('click', function () {
-  resetRemoveAdd()
-  checkQusText()
+function fecthQusAns() {
   fetch("./qus.json")
     .then(response => response.json())
-    .then(data => { start(data) })
+    .then(data => {
+      navbarReset(data)
+      start(data)
+    })
     .catch(err => console.log("err", err))
-})
+}
+//------------------------------------ Reset -------------------
+function navbarReset(dataText) {
+  document.querySelector('.reset').addEventListener('click', function () {
+    resetRemoveAdd()
+    checkQusText()
+    var id = 0
+    oldIdArr = shuffle(dataText)
+    displayQus(dataText, id)
+  })
+}
 //............................... Reset Remove and Add element 
 function resetRemoveAdd() {
   document.querySelectorAll('.ans').forEach(e => e.remove())
   score = 0 * 1
+  document.querySelector('.score .score-display').innerText = score
   document.querySelector('.check').style.opacity = 1
   document.querySelectorAll('.ans').forEach(e => e.remove())
 }
@@ -37,22 +44,22 @@ function checkQusText() {
 //------------------------------------ Game title----------------------
 document.querySelector('.overlay').addEventListener('click', function () {
   document.querySelector('.overlay').classList.add("zero-opacity")
+  fecthQusAns()
   window.setTimeout(function () {
     document.querySelector('.overlay').style.display = "none"
   }, 1000)
 })
 //-------------------------------------Start Game 
 //......................... grab some info for id & qus the First time
-function start(data) {
+function start(data, id) {
   var dataText = data
   oldIdArr = shuffle(dataText)
-  var id = oldIdArr[0]
   displayQus(dataText, id)
 }
 //------------------------------------- display qus -> Second time start here
-function displayQus(dataText, id) {
-  id = 0
+function displayQus(dataText) {
   var ansArr = document.querySelectorAll('.ans')
+  id = 0
   if (ansArr) {
     ansArr.forEach(e => e.remove())
   }
