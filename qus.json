@@ -81,7 +81,7 @@
       "The newspaper deliver: Tuesday newspaper",
       "The milk deliver: two bottles of warm milk"
     ],
-    "ans": "The newspaper deliver",
+    "ans": "The newspaper deliver: Tuesday newspaper",
     "explain": "Newspaper delivery man was the murderer because of absence of Wednesday and Thursday missing newspaper. This indicates he already know that there is no one to read it."
   },
   {

@@ -147,13 +147,21 @@ function hideQusAns() {
 function scoreBoardButtons(overlayScore) {
   window.setTimeout(function () {
     overlayScore.style.opacity = "1"
-    // Button
-    document.querySelector('.restart').addEventListener('click', function () {
-      location.reload()
-    })
-    document.querySelector('.overlay-score .save').addEventListener('click', function () {
-      document.querySelector('.name-container h2').innerText = document.querySelector('.overlay-score input').value
-    })
+    scoreBoardEvent()
+  })
+}
+//-------------------------------------- Score board Event listener
+function scoreBoardEvent() {
+  document.querySelector('.restart').addEventListener('click', function () {
+    location.reload()
+  })
+  document.querySelector('.overlay-score input').addEventListener('change', function () {
+    document.querySelector('.name-container h2').innerText = document.querySelector('.overlay-score input').value
+  })
+  document.querySelector('.clear').addEventListener('click', function () {
+    var ul = document.querySelectorAll('.score-container ul')
+    ul.forEach(e => e.remove())
+    localStorage.clear()
   })
 }
 //------------------------------- Get Date -----------------------------------
@@ -200,14 +208,14 @@ function createScoreBoard() {
 // copy from source
 // https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
 function shuffle(a) {
-  var random, index, firstChild;
+  var randomIndex, index, lastChild;
   for (index = a.length - 1; index > 0; index--) {
-    // to keep random number <index the same, not swap them
-    random = Math.floor(Math.random() * (index + 1));
-    // swap all number index hadn't pass
-    firstChild = a[index];
-    a[index] = a[random];
-    a[random] = firstChild;
+    // + 1 because it's the real length of array index --. Above we -1 because index first child is 0
+    randomIndex = Math.floor(Math.random() * (index + 1));
+    // swap index last with random number
+    lastChild = a[index];
+    a[index] = a[randomIndex];
+    a[randomIndex] = lastChild;
   }
   return a;
 }
