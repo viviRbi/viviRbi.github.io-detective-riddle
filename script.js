@@ -15,7 +15,7 @@ function fecthQusAns() {
     })
     .catch(err => console.log("err", err))
 }
-//------------------------------------ Reset -------------------
+//------------------------------------ Reset ----------------------------------------------------
 function navbarReset(dataText) {
   document.querySelector('.reset').addEventListener('click', function () {
     resetRemoveAdd()
@@ -41,7 +41,7 @@ function checkQusText() {
     qusHolder.appendChild(qusText)
   }
 }
-//------------------------------------ Game title----------------------
+//------------------------------------ Game title----------------------------------------------------
 document.querySelector('.overlay').addEventListener('click', function () {
   document.querySelector('.overlay').classList.add("zero-opacity")
   fecthQusAns()
