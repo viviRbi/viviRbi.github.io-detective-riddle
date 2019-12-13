@@ -1,4 +1,4 @@
-#### Dective Riddles Quiz Game
+## Dective Riddles Quiz Game
 This is a self coring trivia that help players boost their logical skill.
 The data was passed in the game using JSON. Player's scores will be kept at local storage. At the end of the game, all player's scores will be displayed.
 ### Motivation
