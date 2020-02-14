@@ -338,6 +338,7 @@ main{
   display: table-cell;
   margin: auto auto;
   vertical-align: middle;
+  font-size: 2.5vmin;
 }
 .ans-container{
   display: flex;
@@ -366,6 +367,7 @@ main{
   max-height: 30vmin;
   color: rgb(155, 155, 155);
   border-radius: 30px;
+  padding: 1vmin;
   -webkit-box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
   transition: all 250ms ease-in;
@@ -375,6 +377,7 @@ main{
   -ms-transition: all 250ms ease-in;
   cursor: pointer;
   z-index: 9;
+  font-size: 2vmin;
 }
 .ans-block:hover{
   background: grey;
