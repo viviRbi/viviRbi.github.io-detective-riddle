@@ -351,12 +351,21 @@ main{
   display: inline-block;
   flex:1;
   margin: 3vmin 5vmin;
-  background: white;
-  color: rgb(155, 155, 155);
+  background: none;
   height: auto;
   width: auto;
+  align-self: center;
+  position: relative;
+}
+.ans-block{
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  min-height:6vmin;
+  max-height: 30vmin;
+  color: rgb(155, 155, 155);
   border-radius: 30px;
-  padding: 1vmin 2vmin;
   -webkit-box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
   transition: all 250ms ease-in;
@@ -365,28 +374,28 @@ main{
   -o-transition: all 250ms ease-in;
   -ms-transition: all 250ms ease-in;
   cursor: pointer;
-  align-self: center;
+  z-index: 9;
 }
-
-.ans:hover{
+.ans-block:hover{
   background: grey;
   color: white;
-  -moz-transform: translateY(2vh);
-  -webkit-transform: translateY(2vh);
-  -o-transform: translateY(2vh);
-  -ms-transform: translateY(2vh);
-  transform: translateY(2vh);
+  -moz-transform: translateY(2vmin);
+  -webkit-transform: translateY(2vmin);
+  -o-transform: translateY(2vmin);
+  -ms-transform: translateY(2vmin);
+  transform: translateY(2vmin);
 }
-.ans-clicked{
+/* .ans-clicked{
   background: grey !important;
   color: white !important;
-}
+} */
 .ans-container img{
   width: 60px;
   height: 60px;
 }
 /* ------------------------------- finale ------------------------------- */
 .final{
+  margin-top: 13%;
   height: 26vh;
   position: relative;
   width: 70vw;
@@ -405,9 +414,11 @@ main{
   opacity: 0;
 }
 .final .right-wrong{
+  margin-top: -10vmin;
   font-size: 6vmin;
 }
 .final .check .explain{
+  margin-top: -8vmin;
   font-weight: 200;
   padding: 0 1vw;
   margin-top: 3vh;

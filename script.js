@@ -84,8 +84,11 @@ function createAns(dataText, id, ansContainer) {
     var ans = document.createElement('article')
     ans.setAttribute('class', 'ans')
     ansContainer.appendChild(ans)
+    const ansBlock= document.createElement('div')
+    ansBlock.setAttribute('class','ans-block')
+    ans.appendChild(ansBlock)
     var quoteText = document.createElement('h5')
-    ans.appendChild(quoteText)
+    ansBlock.appendChild(quoteText)
     quoteText.textContent = dataText[id].quotes[i]
   }
 }
